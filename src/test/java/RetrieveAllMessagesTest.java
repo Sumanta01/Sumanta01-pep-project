@@ -40,7 +40,7 @@ public class RetrieveAllMessagesTest {
         app = socialMediaController.startAPI();
         webClient = HttpClient.newHttpClient();
         objectMapper = new ObjectMapper();
-        app.start(8080);
+        app.start(8082);
         Thread.sleep(1000);
     }
 
@@ -59,7 +59,7 @@ public class RetrieveAllMessagesTest {
     @Test
     public void getAllMessagesMessagesAvailable() throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/messages"))
+                .uri(URI.create("http://localhost:8082/messages"))
                 .build();
         HttpResponse response = webClient.send(request, HttpResponse.BodyHandlers.ofString());
         int status = response.statusCode();
@@ -86,7 +86,7 @@ public class RetrieveAllMessagesTest {
         removeInitialMessage();
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/messages"))
+                .uri(URI.create("http://localhost:8082/messages"))
                 .build();
         HttpResponse response = webClient.send(request, HttpResponse.BodyHandlers.ofString());
         int status = response.statusCode();

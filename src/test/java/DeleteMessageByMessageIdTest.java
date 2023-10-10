@@ -35,7 +35,7 @@ public class DeleteMessageByMessageIdTest {
         app = socialMediaController.startAPI();
         webClient = HttpClient.newHttpClient();
         objectMapper = new ObjectMapper();
-        app.start(8080);
+        app.start(8082);
         Thread.sleep(1000);
     }
 
@@ -55,7 +55,7 @@ public class DeleteMessageByMessageIdTest {
     @Test
     public void deleteMessageGivenMessageIdMessageFound() throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/messages/1"))
+                .uri(URI.create("http://localhost:8082/messages/1"))
                 .DELETE()
                 .build();
         HttpResponse response = webClient.send(request, HttpResponse.BodyHandlers.ofString());
@@ -78,7 +78,7 @@ public class DeleteMessageByMessageIdTest {
     @Test
     public void deleteMessageGivenMessageIdMessageNotFound() throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/messages/100"))
+                .uri(URI.create("http://localhost:8082/messages/100"))
                 .DELETE()
                 .build();
         HttpResponse response = webClient.send(request, HttpResponse.BodyHandlers.ofString());

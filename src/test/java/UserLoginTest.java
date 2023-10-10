@@ -35,7 +35,7 @@ public class UserLoginTest {
         app = socialMediaController.startAPI();
         webClient = HttpClient.newHttpClient();
         objectMapper = new ObjectMapper();
-        app.start(8080);
+        app.start(8082);
         Thread.sleep(1000);
     }
 
@@ -54,7 +54,7 @@ public class UserLoginTest {
     @Test
     public void loginSuccessful() throws IOException, InterruptedException {
         HttpRequest postRequest = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/login"))
+                .uri(URI.create("http://localhost:8082/login"))
                 .POST(HttpRequest.BodyPublishers.ofString("{" +
                         "\"username\": \"testuser1\", " +
                         "\"password\": \"password\" }"))
@@ -81,7 +81,7 @@ public class UserLoginTest {
     @Test
     public void loginInvalidUsername() throws IOException, InterruptedException {
         HttpRequest postRequest = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/login"))
+                .uri(URI.create("http://localhost:8082/login"))
                 .POST(HttpRequest.BodyPublishers.ofString("{" +
                         "\"username\": \"testuser404\", " +
                         "\"password\": \"password\" }"))
@@ -106,7 +106,7 @@ public class UserLoginTest {
     @Test
     public void loginInvalidPassword() throws IOException, InterruptedException {
         HttpRequest postRequest = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/login"))
+                .uri(URI.create("http://localhost:8082/login"))
                 .POST(HttpRequest.BodyPublishers.ofString("{" +
                         "\"username\": \"testuser1\", " +
                         "\"password\": \"pass123\" }"))

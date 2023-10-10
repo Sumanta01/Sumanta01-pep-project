@@ -34,7 +34,7 @@ public class UserRegistrationTest {
         app = socialMediaController.startAPI();
         webClient = HttpClient.newHttpClient();
         objectMapper = new ObjectMapper();
-        app.start(8080);
+        app.start(8082);
         Thread.sleep(1000);
     }
 
@@ -53,7 +53,7 @@ public class UserRegistrationTest {
     @Test
     public void registerUserSuccessful() throws IOException, InterruptedException {
         HttpRequest postRequest = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/register"))
+                .uri(URI.create("http://localhost:8082/register"))
                 .POST(HttpRequest.BodyPublishers.ofString("{" +
                         "\"username\": \"user\", " +
                         "\"password\": \"password\" }"))
@@ -79,7 +79,7 @@ public class UserRegistrationTest {
     @Test
     public void registerUserDuplicateUsername() throws IOException, InterruptedException {
         HttpRequest postRequest = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/register"))
+                .uri(URI.create("http://localhost:8082/register"))
                 .POST(HttpRequest.BodyPublishers.ofString("{" +
                         "\"username\": \"user\", " +
                         "\"password\": \"password\" }"))
@@ -105,7 +105,7 @@ public class UserRegistrationTest {
     @Test
     public void registerUserUsernameBlank() throws IOException, InterruptedException {
         HttpRequest postRequest = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/register"))
+                .uri(URI.create("http://localhost:8082/register"))
                 .POST(HttpRequest.BodyPublishers.ofString("{" +
                         "\"username\": \"\", " +
                         "\"password\": \"password\" }"))
@@ -129,7 +129,7 @@ public class UserRegistrationTest {
     @Test
     public void registeUserPasswordLengthLessThanFour() throws IOException, InterruptedException {
         HttpRequest postRequest = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/register"))
+                .uri(URI.create("http://localhost:8082/register"))
                 .POST(HttpRequest.BodyPublishers.ofString("{" +
                         "\"username\": \"username\", " +
                         "\"password\": \"pas\" }"))

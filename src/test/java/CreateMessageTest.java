@@ -34,7 +34,7 @@ public class CreateMessageTest {
         app = socialMediaController.startAPI();
         webClient = HttpClient.newHttpClient();
         objectMapper = new ObjectMapper();
-        app.start(8080);
+        app.start(8082);
         Thread.sleep(1000);
     }
 
@@ -56,7 +56,7 @@ public class CreateMessageTest {
     @Test
     public void createMessageSuccessful() throws IOException, InterruptedException {
         HttpRequest postMessageRequest = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/messages"))
+                .uri(URI.create("http://localhost:8082/messages"))
                 .POST(HttpRequest.BodyPublishers.ofString("{"+
                         "\"posted_by\":1, " +
                         "\"message_text\": \"hello message\", " +
@@ -84,7 +84,7 @@ public class CreateMessageTest {
     @Test
     public void createMessageMessageTextBlank() throws IOException, InterruptedException {
         HttpRequest postMessageRequest = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/messages"))
+                .uri(URI.create("http://localhost:8082/messages"))
                 .POST(HttpRequest.BodyPublishers.ofString("{"+
                         "\"posted_by\":1, " +
                         "\"message_text\": \"\", " +
@@ -109,7 +109,7 @@ public class CreateMessageTest {
     @Test
     public void createMessageMessageGreaterThan254() throws IOException, InterruptedException {
         HttpRequest postMessageRequest = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/messages"))
+                .uri(URI.create("http://localhost:8082/messages"))
                 .POST(HttpRequest.BodyPublishers.ofString("{"+
                         "\"posted_by\":1, " +
                         "\"message_text\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\", " +
@@ -134,7 +134,7 @@ public class CreateMessageTest {
     @Test
     public void createMessageUserNotInDb() throws IOException, InterruptedException {
         HttpRequest postMessageRequest = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/messages"))
+                .uri(URI.create("http://localhost:8082/messages"))
                 .POST(HttpRequest.BodyPublishers.ofString("{"+
                         "\"posted_by\":3, " +
                         "\"message_text\": \"message test\", " +

@@ -34,7 +34,7 @@ public class UpdateMessageTextTest {
         app = socialMediaController.startAPI();
         webClient = HttpClient.newHttpClient();
         objectMapper = new ObjectMapper();
-        app.start(8080);
+        app.start(8082);
         Thread.sleep(1000);
     }
 
@@ -54,7 +54,7 @@ public class UpdateMessageTextTest {
     @Test
     public void updateMessageSuccessful() throws IOException, InterruptedException {
         HttpRequest postMessageRequest = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/messages/1"))
+                .uri(URI.create("http://localhost:8082/messages/1"))
                 .method("PATCH", HttpRequest.BodyPublishers.ofString("{"+
                         "\"message_text\": \"updated message\" }"))
                 .header("Content-Type", "application/json")
@@ -82,7 +82,7 @@ public class UpdateMessageTextTest {
     @Test
     public void updateMessageMessageNotFound() throws IOException, InterruptedException {
         HttpRequest postMessageRequest = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/messages/2"))
+                .uri(URI.create("http://localhost:8082/messages/2"))
                 .method("PATCH", HttpRequest.BodyPublishers.ofString("{"+
                         "\"message_text\": \"updated message\" }"))
                 .header("Content-Type", "application/json")
@@ -105,7 +105,7 @@ public class UpdateMessageTextTest {
     @Test
     public void updateMessageMessageStringEmpty() throws IOException, InterruptedException {
         HttpRequest postMessageRequest = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/messages/1"))
+                .uri(URI.create("http://localhost:8082/messages/1"))
                 .method("PATCH", HttpRequest.BodyPublishers.ofString("{"+
                         "\"message_text\": \"\" }"))
                 .header("Content-Type", "application/json")
@@ -128,7 +128,7 @@ public class UpdateMessageTextTest {
     @Test
     public void updateMessageMessageTooLong() throws IOException, InterruptedException {
         HttpRequest postMessageRequest = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/messages/1"))
+                .uri(URI.create("http://localhost:8082/messages/1"))
                 .method("PATCH", HttpRequest.BodyPublishers.ofString("{"+
                         "\"message_text\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\" }"))
                 .header("Content-Type", "application/json")

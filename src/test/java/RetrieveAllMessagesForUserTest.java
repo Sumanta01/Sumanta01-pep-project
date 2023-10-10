@@ -37,7 +37,7 @@ public class RetrieveAllMessagesForUserTest {
         app = socialMediaController.startAPI();
         webClient = HttpClient.newHttpClient();
         objectMapper = new ObjectMapper();
-        app.start(8080);
+        app.start(8082);
         Thread.sleep(1000);
     }
 
@@ -56,7 +56,7 @@ public class RetrieveAllMessagesForUserTest {
     @Test
     public void getAllMessagesFromUserMessageExists() throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/accounts/1/messages"))
+                .uri(URI.create("http://localhost:8082/accounts/1/messages"))
                 .build();
         HttpResponse response = webClient.send(request, HttpResponse.BodyHandlers.ofString());
         int status = response.statusCode();
@@ -79,7 +79,7 @@ public class RetrieveAllMessagesForUserTest {
     @Test
     public void getAllMessagesFromUserNoMessagesFound() throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/accounts/2/messages"))
+                .uri(URI.create("http://localhost:8082/accounts/2/messages"))
                 .build();
         HttpResponse response = webClient.send(request, HttpResponse.BodyHandlers.ofString());
         int status = response.statusCode();
